@@ -15,7 +15,6 @@ def main():
     extractor = Extractor(data_file)
     if extractor.employees_data is not None:
         print("Data loaded successfully.")
-        print(extractor.employees_data)
     else:
         print("Failed to load data.")
         return

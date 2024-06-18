@@ -17,7 +17,6 @@ class Transformer:
     def process_data(self):
         try:
             self.calculate_average_age()
-
             return self.data
         except Exception as e:
             print(f"Error processing data: {e}")
