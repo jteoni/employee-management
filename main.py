@@ -5,26 +5,30 @@ from scripts.extract import Extractor
 from scripts.load import Loader
 from scripts.transform import Transformer
 
-input_file = os.path.join('data', 'employees.csv')
-df = pd.read_csv(input_file)
-
 
 def main():
-    data_dir = "data/"
-    output_dir = "output/"
+    data_file = os.path.join('data', 'employees.csv')
 
+    output_dir = "output/"
     Path(output_dir).mkdir(parents=True, exist_ok=True)
 
-    extractor = Extractor(input_file)
-    employees_data = extractor.load_employees_data()
+    extractor = Extractor(data_file)
+    if extractor.employees_data is not None:
+        print("Data loaded successfully.")
+        print(extractor.employees_data)
+    else:
+        print("Failed to load data.")
+        return
 
-    transformer = Transformer(employees_data)
+    transformer = Transformer(extractor.employees_data)
     transformed_data = transformer.process_data()
+    if not isinstance(transformed_data, pd.DataFrame):
+        print(f"Expected a DataFrame, but got {type(transformed_data).__name__} instead.")
+        return
 
     loader = Loader(output_dir)
     loader.save_data(transformed_data, filename='output.csv')
 
 
 if __name__ == '__main__':
-    # Execute the main function if the script is run directly
     main()

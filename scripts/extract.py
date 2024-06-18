@@ -10,7 +10,18 @@ class Extractor:
     def load_employees_data(self):
         try:
             data = pd.read_csv(self.data_dir)
+            if not isinstance(data, pd.DataFrame):
+                raise TypeError(f"Expected a DataFrame @ Extractor")
             return data
         except FileNotFoundError as e:
             print(f"Error loading data: {e}")
+            return None
+        except pd.errors.EmptyDataError as e:
+            print(f"No data: {e}")
+            return None
+        except pd.errors.ParserError as e:
+            print(f"Error parsing data: {e}")
+            return None
+        except Exception as e:
+            print(f"An unexpected error occurred: {e}")
             return None

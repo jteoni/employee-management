@@ -8,9 +8,10 @@ class Loader:
 
     def save_data(self, data, filename='output.csv'):
         if not isinstance(data, pd.DataFrame):
-            raise TypeError("Expected a DataFrame")
+            raise TypeError("Expected a DataFrame @ Loader")
 
         try:
+            os.makedirs(self.output_path, exist_ok=True)
             output_file = os.path.join(self.output_path, filename)
             data.to_csv(output_file, index=False)
             print(f"Data saved to {output_file}")

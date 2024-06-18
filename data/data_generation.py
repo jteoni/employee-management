@@ -9,15 +9,16 @@ fake = Faker()
 num_employees = 100
 
 data = {
-    'Name': [fake.name() for _ in range(num_employees)],
-    'Job': [fake.job() for _ in range(num_employees)],
-    'Departament': [fake.random_element(elements=('Sales', 'MKT', 'IT', 'Financial')) for _ in range(num_employees)],
-    'Start_date': [fake.date_between(start_date='-5y', end_date='today') for _ in range(num_employees)],
-    'Salary': [fake.random_int(min=3000, max=20000) for _ in range(num_employees)],
-    'Email': [fake.email() for _ in range(num_employees)],
-    'Phone': [fake.phone_number() for _ in range(num_employees)],
-    'Address': [fake.address() for _ in range(num_employees)],
-    'Age': [fake.random_int(min=18, max=65) for _ in range(num_employees)]
+    'id': [fake.random_int(min=3000, max=20000) for _ in range(num_employees)],
+    'name': [fake.name() for _ in range(num_employees)],
+    'job': [fake.random_element(elements=('Teacher', 'Security Guard', 'ADMIN', 'Financial')) for _ in
+            range(num_employees)],
+    'start_date': [fake.date_between(start_date='-5y', end_date='today') for _ in range(num_employees)],
+    'salary': [fake.random_int(min=3000, max=20000) for _ in range(num_employees)],
+    'email': [fake.email() for _ in range(num_employees)],
+    'phone': [fake.phone_number() for _ in range(num_employees)],
+    'address': [fake.address() for _ in range(num_employees)],
+    'age': [fake.random_int(min=18, max=65) for _ in range(num_employees)]
 }
 
 # Create DataFrame
